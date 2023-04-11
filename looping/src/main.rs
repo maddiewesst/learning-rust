@@ -16,7 +16,7 @@ fn main() {
         count += 1;
 
         if guess.trim() == "The letter e" {
-            println!("Number of trials: {}", count)
+            println!("Number of trials: {}", count);
             break;
         } else {
             continue;
