@@ -1,3 +1,4 @@
+#[derive(Debug, PartialEq, Eq)]
 pub struct Student(u32, String, String);
 
 pub fn id(student: &Student) -> u32 {
