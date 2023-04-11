@@ -1,13 +1,16 @@
 pub struct Student(u32, String, String);
 
 pub fn id(student: &Student) -> u32 {
-    Student(student.0.0)
+    let (x, y, z) = Student;
+    return x
 }
 
 pub fn first_name(student: &Student) -> String {
-    Student(student.0.1)
+    let (x, y, z) = Student;
+    return y
 }
 
 pub fn last_name(student: &Student) -> String {
-    Student(student.0.2)
+    let (x, y, z) = Student;
+    return z
 }
