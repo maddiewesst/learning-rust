@@ -12,7 +12,7 @@ fn main() {
             .read_line(&mut guess)
             .expect("Failed to read line");
             
-        println!("{guess}");
+        println!({guess});
         count += 1;
 
         if guess.trim() == "The letter e" {
