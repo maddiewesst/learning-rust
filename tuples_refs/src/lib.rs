@@ -1,17 +1,15 @@
 #[derive(Debug, PartialEq, Eq)]
-pub struct Student(u32, String, String);
+pub struct Student(pub(u32, String, String));
 
 pub fn id(student: &Student) -> u32 {
-    let (x, y, z) = Student;
-    return x
+    student.0
 }
 
 pub fn first_name(student: &Student) -> String {
-    let (x, y, z) = Student;
-    return y
+    student.1.clone()
 }
 
 pub fn last_name(student: &Student) -> String {
-    let (x, y, z) = Student;
-    return z
+    student.2.clone()
+
 }
