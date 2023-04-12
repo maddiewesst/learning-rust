@@ -7,9 +7,7 @@ pub fn is_ascii(v: &str) -> bool {
 }
 
 pub fn contains(v: &str, pat: &str) -> bool {
-    match v {
-        pat => return true,
-    }
+    v.contains(pat)
 }
 
 
