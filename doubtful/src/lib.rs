@@ -1,5 +1,5 @@
 pub fn doubtful(s: String ) {
-    s.push_str("!"):
+    s.push_str("!");
 }
 
 
