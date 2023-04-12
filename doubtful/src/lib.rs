@@ -1,4 +1,4 @@
-pub fn doubtful(s: &Str ) {
+pub fn doubtful(s: &str ) {
     s.push_str("!");
 }
 
