@@ -1,4 +1,4 @@
-pub fn doubtful(s: &str ) {
+pub fn doubtful(mut s: String ) {
     s.push_str("!");
 }
 
