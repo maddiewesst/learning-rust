@@ -1,7 +1,7 @@
 pub fn nbr_function(c: i32) -> (i32, f64, f64) {
-    let mut sum = 0.0;
-    sum += f64::from(c);
-    (c, sum.exp(), sum.ln())
+    let mut f = 0.0;
+    f += f64::from(c);
+    (c, f.exp(), (c.abs() as f64).ln())
 }
 
 pub fn str_function(a: String) -> (String, String) {
