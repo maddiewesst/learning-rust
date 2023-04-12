@@ -8,21 +8,27 @@ pub fn is_ascii(v: &str) -> bool {
 
 pub fn contains(v: &str, pat: &str) -> bool {
     match v {
-        pat => return true;
+        pat => return true,
     }
 }
+
 
 pub fn split_at(v: &str, index: usize) -> (&str, &str) {
-    (one, two) = v.to_string().split_at(index)
-}
-
-pub fn find(v: &str, pat: char) -> usize {  
-    for (i, &item) in bytes.iter().enumerate() {
-        if item == pat {
-            return i;
-        }
-    }
-}
+    let (one, two) = v.split_at(index);
+    let tup: (&str, &str)= (one, two);
+    return tup;
+     
+ 
+ }
+ 
+ pub fn find(v: &str, pat: char) -> usize {  
+     for (i, item) in v.chars().enumerate() {
+         if item == pat {
+             return i;
+         }
+     }
+     return v.len();
+ }
 
 #[cfg(test)]
 mod tests {
@@ -30,7 +36,7 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+        let result = split_at("rust", 2);
+        assert_eq!(result, ("ru", "st"));
     }
 }
