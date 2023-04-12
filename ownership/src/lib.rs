@@ -6,9 +6,7 @@ pub fn first_subword(mut s: String) -> String {
             return s[..i].to_string();
         }
     }
- 
   s
-
 }
 
 #[cfg(test)]
