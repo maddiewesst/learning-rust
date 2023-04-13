@@ -55,17 +55,19 @@ impl Rank {
             i32::MIN..=0_i32 | 6_i32..=i32::MAX => todo!(),
         }
     }
-}
 
-pub fn translate(value: u8) -> Rank {
-    match value {
-        1 => return Rank::Ace,
-        13 => return Rank::King,
-        12 => return Rank::Queen,
-        11 => return Rank::Jack,
-        other => return Rank::Number(other),
+    pub fn translate(value: u8) -> Rank {
+        match value {
+            1 => return Rank::Ace,
+            13 => return Rank::King,
+            12 => return Rank::Queen,
+            11 => return Rank::Jack,
+            other => return Rank::Number(other),
+        }
     }
 }
+
+
 #[derive(Debug, Eq, PartialEq)]
 pub struct Card {
     pub suit: Suit,
