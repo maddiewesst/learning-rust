@@ -28,13 +28,13 @@ impl Circle {
 
 #[derive(Debug)]
 pub struct Point {
-    x: f64,
-    y: f64,
+   pub x: f64,
+   pub y: f64,
    
 }
 
 impl Point {
-    fn distance(&self, other: &Point) -> f64 {
+    pub fn distance(&self, other: &Point) -> f64 {
         let y = self.y - other.y;
         let x = self.x - other.x;
         // let xy = x * x + y * y
