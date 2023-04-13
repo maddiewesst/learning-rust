@@ -26,7 +26,6 @@ impl Suit {
             2 => return Suit::Diamond,
             3 => return Suit::Spade,
             4 => return Suit::Club,
-            _ => (),
         }
     }
 
