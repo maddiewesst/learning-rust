@@ -1,13 +1,14 @@
 use rand::Rng;
 
-#[derive(Debug)]
+
+#[derive(Debug, Eq, PartialEq)]
 pub enum Suit {
     Heart,
     Diamond,
     Spade,
     Club,
 }
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Eq, PartialEq)]
 pub enum Rank {
     Ace,
     King,
@@ -65,7 +66,7 @@ pub fn translate(value: u8) -> Rank {
         other => return Rank::Number(other),
     }
 }
-#[derive(Debug)]
+#[derive(Debug, Eq, PartialEq)]
 pub struct Card {
     pub suit: Suit,
     pub rank: Rank,
