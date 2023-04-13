@@ -26,6 +26,7 @@ impl Suit {
             2 => return Suit::Diamond,
             3 => return Suit::Spade,
             4 => return Suit::Club,
+            _ => (),
         }
         
 	}
@@ -36,6 +37,7 @@ impl Suit {
             2 => Suit::Diamond,
             3 => Suit::Spade,
             4 => Suit::Club,
+            _ => (),
         }
 	}
 }
@@ -49,6 +51,7 @@ impl Rank {
             3 => return Rank::Queen,
             4 => return Rank::Jack,
             5 => return Rank::Number(rng.gen_range(2, 10)),
+            _ => ()
         }
         
 	}
@@ -61,7 +64,7 @@ impl Rank {
             13 => return Rank::King,
             12 => return Rank::Queen,
             11 => return Rank::Jack,
-            other => return Rank::Number(value)
+            other => return Rank::Number(other)
 	}
 }
 #[derive(Debug)]
