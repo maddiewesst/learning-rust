@@ -1,3 +1,4 @@
+use rand::Rng;
 
 #[derive(Debug)]
 pub enum Suit {
