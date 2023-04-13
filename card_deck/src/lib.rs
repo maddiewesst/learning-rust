@@ -26,6 +26,7 @@ impl Suit {
             2 => return Suit::Diamond,
             3 => return Suit::Spade,
             4 => return Suit::Club,
+            i32::MIN..=0_i32 | 5_i32..=i32::MAX => todo!(),
         }
     }
 
@@ -35,6 +36,8 @@ impl Suit {
             2 => Suit::Diamond,
             3 => Suit::Spade,
             4 => Suit::Club,
+            0_u8 | 5_u8..=u8::MAX => todo!(),
+            
         }
     }
 }
@@ -48,6 +51,7 @@ impl Rank {
             3 => return Rank::Queen,
             4 => return Rank::Jack,
             5 => return Rank::Number(rng.gen_range(2, 10)),
+            i32::MIN..=0_i32 | 6_i32..=i32::MAX => todo!(),
         }
     }
 }
@@ -68,11 +72,11 @@ pub struct Card {
 }
 
 pub fn winner_card(card: &Card) -> bool {
-    match card.suit {
+    match &card.suit {
         Suit::Spade => match card.rank {
             Rank::Ace => return true,
             _ => false,
         },
-        other => return false,
+        _other => return false,
     }
 }
