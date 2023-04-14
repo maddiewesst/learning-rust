@@ -1,3 +1,7 @@
+pub fn capitalize_first(input: &str) -> String {
+	format!("{}{}", input.chars().next().unwrap().to_uppercase(), 
+	input.chars().skip(1).collect::<String>())
+}
 
 pub fn title_case(input: &str) -> String{
 	let mut result = String::new();
