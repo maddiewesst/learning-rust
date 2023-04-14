@@ -1,10 +1,9 @@
 pub fn capitalize_first(input: &str) -> String {
    if input.is_empty() {
-    return input
+    return input.to_string();
    }
 	format!("{}{}", input.chars().next().unwrap().to_uppercase(), 
 	input.chars().skip(1).collect::<String>())
-    
 }
 
 
