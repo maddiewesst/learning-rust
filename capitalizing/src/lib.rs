@@ -3,21 +3,26 @@ pub fn capitalize_first(input: &str) -> String {
 	input.chars().skip(1).collect::<String>())
 }
 
-pub fn title_case(input: &str) -> String{
-	let mut result = String::new();
+
+pub fn title_case(input: &str) -> String {
+	// let mut result = String::new();
+	let mut newvec: Vec<String> = Vec::new();
 
 	let parts = input.split_whitespace();
 	let collection: Vec<&str> = parts.collect();
 
 	for s in collection {
-		let mut v: Vec<char> = s.chars().collect();
+		if !s.is_empty() {
+        let mut v: Vec<char> = s.chars().collect();
 		v[0] = v[0].to_uppercase().nth(0).unwrap();
-		for c in v.iter() {
-			result.push(*c);
-		}
-		result.push(' ');
+		let newstring: String = v.into_iter().collect();
+		newvec.push(newstring);
+    }
+	
 	}
-	result
+
+	let join = newvec.join(" ");
+	join
 }
 
 pub fn change_case(input: &str) -> String {
