@@ -31,7 +31,7 @@ pub fn mode(list: &Vec<i32>) -> i32 {
     return bigger(map)
 }
 
-pub fn bigger(h: HashMap<&str, i32>) -> i32 {
+pub fn bigger(h: HashMap<&i32, i32>) -> i32 {
 
     let mut bv: i32 = 0;
     for (_, value) in h.iter() {
