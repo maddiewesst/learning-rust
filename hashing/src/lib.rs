@@ -7,7 +7,7 @@ pub fn mean(list: &Vec<i32>) -> f64 {
 }
 
 pub fn median(list: &Vec<i32>) -> i32 {
-    let mut val = 0;
+    let mut val;
     let mut n = 0;
     let mut sorted = list.clone();
     sorted.sort();
@@ -24,22 +24,17 @@ pub fn median(list: &Vec<i32>) -> i32 {
 }
 
 pub fn mode(list: &Vec<i32>) -> i32 {
-    let mut map = HashMap::new();
-    for item in list {
-        *map.entry(item).or_insert(0) += 1;
-    }
-    return bigger(map)
-}
+    let mut map: HashMap<String, u32> = HashMap::new();
 
-pub fn bigger(h: HashMap<&i32, i32>) -> i32 {
-
-    let mut bv: i32 = 0;
-    for (_, value) in h.iter() {
-        if value > &bv {
-            bv = *value
+    for n in list.iter() {
+        if map.contains_key(&n.to_string()) {
+            *map.entry(n.to_string()).or_insert(0) += 1;
+            continue;
         }
+        map.insert(n.to_string(), 1);
     }
-    bv
+    let str: &String = map.iter().max_by_key(|entry| entry.1).unwrap().0;
+    str.parse().unwrap()
 }
 
 #[cfg(test)]
