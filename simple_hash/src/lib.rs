@@ -1,3 +1,4 @@
+use std::collections::HashMap;
 
 pub fn word_frequency_counter(words: Vec<&str>) -> HashMap<&str, usize> {
     let mut map = HashMap::new();
