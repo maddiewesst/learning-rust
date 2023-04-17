@@ -1,25 +1,28 @@
-struct Message {
+pub struct Message {
     content: String,
     user: String,
 }
 
 impl Message {
-    fn new(content: String, user: String) -> Message {
-        Message { content, user }
+    pub fn new(ms: String, u: String) -> Message {
+        Message { 
+		content: ms,
+		user: u
+	 }
     }
 
-    fn send_ms(&self) -> Option<String> {
+    pub fn send_ms(&self) -> Option<&str> {
         if self.content.is_empty() || self.content.contains("stupid") {
             None
         } else {
-            Some(self.content.clone())
+            Some(&self.content)
         }
     }
 }
 
-fn check_ms(ms: &Message) -> (bool, String) {
+pub fn check_ms(ms: &Message) -> (bool, &str) {
     match ms.send_ms() {
-        None => (false, "ERROR: illegal".to_string()),
+        None => (false, "ERROR: illegal"),
         Some(content) => (true, content),
     }
 }
