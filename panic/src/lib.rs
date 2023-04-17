@@ -1,7 +1,12 @@
 use std::fs::File;
 
 pub fn open_file(s: &str) -> File {
-    File::open(s).unwrap()
+    let file_result = File::open(s);
+
+    let file = match file_result {
+        Ok(file) => file,
+        Err(error) => panic!("File not found"),
+    }
 }
 
 
