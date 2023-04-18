@@ -1,3 +1,6 @@
+pub mod areas_volumes;
+pub use crate::areas_volumes::*;
+
 pub fn area_fit(
 	x: usize,
 	y: usize,
@@ -26,17 +29,16 @@ pub fn volume_fit(
 	b: usize,
 	c: usize,
 ) -> bool {
-    match objects {
-        let object_volume = match objects {
-            GeometricalVolumes::Cube => cube_volume(a),
-            GeometricalVolumes::Sphere => sphere_volume(a) as usize,
-            GeometricalVolumes::Cone => cone_volume(a, c) as usize,
-            GeometricalVolumes::Pyramid => triangular_pyramid_volume(b as f64, a) as usize,
-            GeometricalVolumes::Parallelepiped => parallelepiped_volume(a, b, c),
-        };
-        let volume = x * y * z;
-        let max_objects = volume / object_volume;
-        max_objects >= times
-    }
-
+    let object_volume = match objects {
+        GeometricalVolumes::Cube => cube_volume(a),
+        GeometricalVolumes::Sphere => sphere_volume(a) as usize,
+        GeometricalVolumes::Cone => cone_volume(a, c) as usize,
+        GeometricalVolumes::Pyramid => triangular_pyramid_volume(b as f64, a) as usize,
+        GeometricalVolumes::Parallelepiped => parallelepiped_volume(a, b, c),
+    };
+    let volume = x * y * z;
+    let max_objects = volume / object_volume;
+    max_objects >= times
 }
+
+
