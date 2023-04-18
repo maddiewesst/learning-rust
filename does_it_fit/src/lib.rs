@@ -36,9 +36,7 @@ pub fn volume_fit(
         GeometricalVolumes::Pyramid => triangular_pyramid_volume(b as f64, a) as usize,
         GeometricalVolumes::Parallelepiped => parallelepiped_volume(a, b, c),
     };
-    let volume = x * y * z;
-    let max_objects = volume / object_volume;
-    max_objects >= times
+    parallelepiped_volume(x, y, z) > object_volume * times
 }
 
 
