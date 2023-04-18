@@ -4,6 +4,7 @@ use serde::{Deserialize, Serialize};
 use std::fs::File;
 use std::io::Read;
 pub use std::error::Error;
+use std::io::prelude::*;
 
 #[derive(Debug, Eq, PartialEq, Serialize, Deserialize)]
 pub struct Task {
