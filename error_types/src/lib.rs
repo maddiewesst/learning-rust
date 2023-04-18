@@ -54,10 +54,20 @@ impl Form {
 
         if self.password.chars().any(|c| c.is_alphabetic()) {
             has_alphabetic = true; 
-        } else if self.password.chars().any(|c| c.is_numeric()) {
+        } else {
+            has_alphabetic = false; 
+        }
+        
+        if self.password.chars().any(|c| c.is_numeric()) {
             has_numeric = true;
-        } else if self.password.chars().any(|c| c.is_ascii_punctuation()) {
+        } else {
+            has_numeric = false;
+        }
+        
+        if self.password.chars().any(|c| c.is_ascii_punctuation()) {
             has_non_alphanumeric = true;
+        } else {
+            has_non_alphanumeric = false;
         }
 
         if self.password.len() < 8 {
