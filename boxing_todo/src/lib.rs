@@ -1,19 +1,20 @@
-mod err;
-use err::{ ParseErr, ReadErr };
-use serde::{Deserialize, Serialize};
+pub use std::error::Error;
 use std::fs::File;
 use std::io::Read;
-pub use std::error::Error;
-use std::io::prelude::*;
+use std::path::Path;
 
-#[derive(Debug, Eq, PartialEq, Serialize, Deserialize)]
+mod err;
+
+
+
+#[derive(Debug, Eq, PartialEq)]
 pub struct Task {
     pub id: u32,
     pub description: String,
     pub level: u32,
 }
 
-#[derive(Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Eq, PartialEq)]
 pub struct TodoList {
     pub title: String,
     pub tasks: Vec<Task>,
@@ -21,15 +22,42 @@ pub struct TodoList {
 
 impl TodoList {
     pub fn get_todo(path: &str) -> Result<TodoList, Box<dyn Error>> {
-        let mut file = File::open(path)?;
-        let mut content: String = String::new();
-        file.read_to_string(&mut content)?;
-        let json_value: TodoList = serde_json::from_str(&content)?;
-
-        if json_value.tasks.is_empty(){
-            return Err(Box::new(ParseErr::Empty));
-        }else{
-            Ok(json_value)
-        }
+        
+        let mut file = File::open(path).map_err(|e| err::ReadErr {
+            child_err: Box::new(e),
+        })?;
+        let mut contents = String::new();
+        file.read_to_string(&mut contents).map_err(|e| err::ReadErr {
+            child_err: Box::new(e),
+        })?;
+        let json = json::parse(&contents).map_err(|e| {
+            println!("{}", e);
+            err::ParseErr::Malformed(Box::new(e))
+        })?;
+        let title = json["title"].as_str().ok_or_else(|| {
+            err::ParseErr::Empty
+        })?.to_string();
+        let tasks = match json["tasks"].members().collect::<Vec<_>>() {
+            members if members.is_empty() => {
+                return Err(Box::new(err::ParseErr::Empty));
+            }
+            members => {
+                members
+                    .into_iter()
+                    .map(|task| {
+                        let id = task["id"].as_u32().unwrap();
+                        let description = task["description"].as_str().unwrap().to_string();
+                        let level = task["level"].as_u32().unwrap();
+                        Task {
+                            id,
+                            description,
+                            level,
+                        }
+                    })
+                    .collect()
+            }
+        };
+        
+        Ok(TodoList { title, tasks })
     }
 }
