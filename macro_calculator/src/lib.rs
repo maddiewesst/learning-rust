@@ -23,7 +23,6 @@ pub fn calculate_macros(foods: Vec<Food>) -> json::JsonValue {
         fats += food.fats * food.nbr_of_portions;
     }
 
-
     cals = (cals * 100.0).round() / 100.0;
     carbs = (carbs * 100.0).round() / 100.0;
     proteins = (proteins * 100.0).round() / 100.0;
