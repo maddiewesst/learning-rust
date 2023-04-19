@@ -37,13 +37,3 @@ pub fn mode(list: &Vec<i32>) -> i32 {
     str.parse().unwrap()
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
-}
