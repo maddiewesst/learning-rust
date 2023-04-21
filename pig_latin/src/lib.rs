@@ -8,8 +8,8 @@ pub fn pig_latin(text: &str) -> String {
         while i < chars.len() && !vowels.contains(&chars[i]) {
             if chars[i] == 'q' && i+1 < chars.len() && chars[i+1] == 'u' {
                 consonants.push(chars[i]);
-                consonants.push(chars[i+1]);
-                i += 2;
+                // consonants.push(chars[i+1]);
+                i += 1;
             } else {
                 consonants.push(chars[i]);
                 i += 1;
