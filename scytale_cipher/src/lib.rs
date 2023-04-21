@@ -19,14 +19,17 @@ for col in 0..cols {
     let mut chars: Vec<char> = message.chars().skip(start_index).take(i as usize).collect();
     chars.resize(i as usize, ' ');
 
+
+
     for (i, c) in chars.into_iter().enumerate() {
         let index = i * cols + col;
-        result[index] = c;
+        if index >= len { 
+        continue; 
+        } else {
+            result[index] = c;
+        }
     }
 }
 
 result.iter().collect()
 }
-
-
-
