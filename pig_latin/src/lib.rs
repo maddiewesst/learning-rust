@@ -6,10 +6,11 @@ pub fn pig_latin(text: &str) -> String {
         let mut consonants = Vec::new();
         let mut i = 0;
         while i < chars.len() && !vowels.contains(&chars[i]) {
-            if chars[i] == 'q' && i+1 < chars.len() && chars[i+1] == 'u' {
+            if i+2 < chars.len() && chars[i+1] == 'q' && chars[i+2] == 'u' {
                 consonants.push(chars[i]);
-                // consonants.push(chars[i+1]);
-                i += 1;
+                consonants.push(chars[i+1]);
+                consonants.push(chars[i+2]);
+                i += 3;
             } else {
                 consonants.push(chars[i]);
                 i += 1;
