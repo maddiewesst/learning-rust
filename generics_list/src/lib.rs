@@ -38,17 +38,16 @@ impl<T> List<T> {
     }
 
     pub fn pop(&mut self) {
-        // let list = self.head.take();
-        // match list {
-        //     Some(node) => {
-                
-        //     }
-        // }
+        let list = self.head.take();
 
-        if let Some(node) = self.head.take() {
-            self.head = Some(*node.next.unwrap());
-        } else {
-            self.head = None;
+        match list {
+            Some(node) => {
+                match node.next {
+                    Some(next) => self.head = Some(*next),
+                    None => self.head = None,
+                }
+            } 
+            None => return
         }
     }
 
