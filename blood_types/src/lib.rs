@@ -181,6 +181,12 @@ impl BloodType {
 				});
 			}
 		}
+		if self.rh_factor == RhFactor::Positive {
+            for mut blood in result.clone() {
+                blood.rh_factor = RhFactor::Positive;
+                result.push(blood)
+            }
+        }
 		result
 		
 	}
