@@ -1,7 +1,7 @@
 mod messenger;
 use std::collections::HashMap;
 pub use std::cell::RefCell;
-use std::rc::Rc;
+pub use std::rc::Rc;
 pub use messenger::*;
 
 pub struct Worker {
