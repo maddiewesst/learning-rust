@@ -16,7 +16,7 @@ pub enum RhFactor {
 	Negative,
 }
 
-#[derive(PartialEq, Eq, PartialOrd)]
+#[derive(PartialEq, Eq, PartialOrd, Clone)]
 pub struct BloodType {
 	pub antigen: Antigen,
 	pub rh_factor: RhFactor,
@@ -232,6 +232,12 @@ impl BloodType {
                     antigen: Antigen::B,
                     rh_factor: RhFactor::Positive
                 });
+            }
+        }
+		if self.rh_factor == RhFactor::Negative {
+            for mut blood in result.clone() {
+                blood.rh_factor = RhFactor::Negative;
+                result.push(blood)
             }
         }
 		result
