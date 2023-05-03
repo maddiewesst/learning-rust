@@ -13,7 +13,7 @@ impl<'a> Numbers<'a> {
     }
 
     pub fn latest(&self) -> Option<u32> {
-        self.numbers.last()
+        self.numbers.last().copied()
         // if self.numbers.is_empty() {
         //     return None;
         // } else {
