@@ -13,12 +13,13 @@ impl<'a> Numbers<'a> {
     }
 
     pub fn latest(&self) -> Option<u32> {
-        if self.numbers.is_empty() {
-            return None;
-        } else {
-            let x = self.numbers.last().unwrap();
-            Some(*x)
-        }
+        self.numbers.last()
+        // if self.numbers.is_empty() {
+        //     return None;
+        // } else {
+        //     let x = self.numbers.last().unwrap();
+        //     Some(*x)
+        // }
     }
 
     pub fn highest(&self) -> Option<u32> {
