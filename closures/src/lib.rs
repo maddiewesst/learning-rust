@@ -1,7 +1,7 @@
-fn first_fifty_even_square() -> Vec<i32> {
+pub fn first_fifty_even_square() -> Vec<i32> {
     let mut result: Vec<i32> = vec![];
 
-    let mut num = 2;
+    let mut num: i32 = 2;
     while result.len() != 50 {
             result.push(num.pow(2));
             num += 2;
