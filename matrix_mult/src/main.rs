@@ -12,5 +12,3 @@ fn main() {
 	println!("{:?}", matrix_1.number_of_cols());
 	println!("{:?}", matrix_2.number_of_rows());
 }
-
-

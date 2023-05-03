@@ -1,7 +1,4 @@
 use std::ops::{Add, Sub, Div, Mul};
-
-
-
 pub trait Scalar: Add + Sub + Div + Mul + Sized {
         type Item;
         fn zero() -> Self::Item;
