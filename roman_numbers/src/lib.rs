@@ -42,7 +42,6 @@ impl From<u32> for RomanNumber {
         for (i, str) in conversions {
             while number >= i {
                 for ch in str.chars() {
-                    //  vec.push(str);
                     let el = match ch {
                         'M' => RomanDigit::M,
                         'D' => RomanDigit::D,
