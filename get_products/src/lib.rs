@@ -4,6 +4,10 @@ pub fn get_products(arr: Vec<usize>) -> Vec<usize> {
     let mut left_product = 1;
     let mut right_product = 1;
 
+    if arr.len() == 1 {
+        return vec![];
+    }
+
     for i in 0..n {
         result[i] *= left_product;
         left_product *= arr[i];
