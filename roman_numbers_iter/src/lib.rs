@@ -79,12 +79,12 @@ impl Iterator for RomanNumber {
                 RomanDigit::X => RomanDigit::V,
                 RomanDigit::V => RomanDigit::I,
                 RomanDigit::I => RomanDigit::Nulla,
-                _ => panic!("Invalid digit")
+                _ => return None,
             };
             vec.0.push(el);
             Some(vec)
         } else {
-            None
+            Some(self.clone())
         }
     }
     
