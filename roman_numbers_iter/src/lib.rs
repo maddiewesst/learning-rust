@@ -78,13 +78,13 @@ impl Iterator for RomanNumber {
                 RomanDigit::L => RomanDigit::X,
                 RomanDigit::X => RomanDigit::V,
                 RomanDigit::V => RomanDigit::I,
-                RomanDigit::I => return Some(RomanNumber(vec![])),
+                RomanDigit::I => RomanDigit::Nulla,
                 _ => return None,
             };
             vec.0.push(el);
             Some(vec)
         } else {
-            Some(self.clone())
+            return Some(RomanNumber(vec![]))
         }
     }
     
