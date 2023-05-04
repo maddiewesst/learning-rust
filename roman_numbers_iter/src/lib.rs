@@ -78,7 +78,8 @@ impl Iterator for RomanNumber {
                 RomanDigit::L => RomanDigit::X,
                 RomanDigit::X => RomanDigit::V,
                 RomanDigit::V => RomanDigit::I,
-                _ => RomanDigit::Nulla,
+                RomanDigit::I => RomanDigit::Nulla,
+                _ => panic!("Invalid digit")
             };
             vec.0.push(el);
             Some(vec)
