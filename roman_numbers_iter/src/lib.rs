@@ -69,7 +69,9 @@ impl Iterator for RomanNumber {
         let mut vec = self.clone();
 
        
-
+        if self.0.len() == 1 && self.0[0] == RomanDigit::I {
+            return Some(RomanNumber(vec![]))
+        }
         if let Some(&last_digit) = self.0.last() {
             let el = match last_digit {
                 RomanDigit::M => RomanDigit::D,
