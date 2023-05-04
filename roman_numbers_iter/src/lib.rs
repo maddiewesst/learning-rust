@@ -67,21 +67,22 @@ impl Iterator for RomanNumber {
 
     fn next(&mut self) -> Option<Self::Item> {
         let mut vec = self.clone();
-        println!("{:?}", self);
-        if self.0.is_empty() {
-            return None;
-        };
 
-       let el = match self.0.last().unwrap() {
-            RomanDigit::M => RomanDigit::D,
-            RomanDigit::D => RomanDigit::C,
-            RomanDigit::C => RomanDigit::L,
-            RomanDigit::L => RomanDigit::X,
-            RomanDigit::X => RomanDigit::V,
-            RomanDigit::V => RomanDigit::I,
-            _ => RomanDigit::Nulla,
-        };
-        vec.0.push(el);
-        Some(vec)
+        if self.0.len() >= 1 {
+
+            let el = match self.0.last().unwrap() {
+                RomanDigit::M => RomanDigit::D,
+                RomanDigit::D => RomanDigit::C,
+                RomanDigit::C => RomanDigit::L,
+                RomanDigit::L => RomanDigit::X,
+                RomanDigit::X => RomanDigit::V,
+                RomanDigit::V => RomanDigit::I,
+                _ => RomanDigit::Nulla,
+            };
+            vec.0.push(el);
+            return Some(vec)
+        }
+
+       None
     }
 }
