@@ -78,7 +78,7 @@ impl Iterator for RomanNumber {
                 RomanDigit::L => RomanDigit::X,
                 RomanDigit::X => RomanDigit::V,
                 RomanDigit::V => RomanDigit::I,
-                RomanDigit::I => RomanDigit::Nulla,
+                RomanDigit::I => return Some(self.clone()),
                 _ => return None,
             };
             vec.0.push(el);
