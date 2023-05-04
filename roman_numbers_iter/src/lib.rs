@@ -68,9 +68,10 @@ impl Iterator for RomanNumber {
     fn next(&mut self) -> Option<Self::Item> {
         let mut vec = self.clone();
 
-        if self.0.len() >= 1 {
+       
 
-            let el = match self.0.last().unwrap() {
+        if let Some(&last_digit) = self.0.last() {
+            let el = match last_digit {
                 RomanDigit::M => RomanDigit::D,
                 RomanDigit::D => RomanDigit::C,
                 RomanDigit::C => RomanDigit::L,
@@ -80,9 +81,11 @@ impl Iterator for RomanNumber {
                 _ => RomanDigit::Nulla,
             };
             vec.0.push(el);
-            return Some(vec)
+            Some(vec)
+        } else {
+            None
         }
-
-       None
     }
+    
+    
 }
