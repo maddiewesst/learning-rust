@@ -63,12 +63,23 @@ impl From<u32> for RomanNumber {
         RomanNumber(reverse_roman)
     }
 }
-
-
 impl Iterator for RomanNumber {
     type Item = Self;
-
     fn next(&mut self) -> Option<Self::Item> {
-      
+        if self.0.len() > 0 {
+            let n = self.0.clone()[self.0.len() - 1];
+            let mut number: u32 = 0;
+            match n {
+                RomanDigit::Num(num) => number = num,
+                _ => number = 0,
+            };
+            let mut new_r = RomanNumber::from(number + 1);
+            self.0.pop();
+            new_r.0.pop();
+            new_r.0.push(RomanDigit::Num(number + 1));
+            Some(new_r)
+        } else {
+            None
+        }
     }
 }
