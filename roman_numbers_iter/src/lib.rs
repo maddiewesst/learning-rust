@@ -1,4 +1,5 @@
-
+use core::num;
+use crate::RomanDigit::*;
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
 pub enum RomanDigit {
     Nulla,
@@ -9,86 +10,65 @@ pub enum RomanDigit {
     C,
     D,
     M,
+    Num(u32),
 }
-
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct RomanNumber(pub Vec<RomanDigit>);
-
 impl From<u32> for RomanDigit {
-    fn from(_: u32) -> Self {
-        RomanDigit::X
+    fn from(n: u32) -> Self {
+        match n {
+            1..=4 => I,
+            5..=9 => V,
+            10..=49 => X,
+            50..=99 => L,
+            100..=499 => C,
+            500..=999 => D,
+            1000..=5000 => M,
+            _ => Nulla,
+        }
     }
 }
-
+#[derive(Debug)]
+pub struct RomanNumber(pub Vec<RomanDigit>);
 impl From<u32> for RomanNumber {
     fn from(n: u32) -> Self {
-        let mut number = n.clone();
-        let mut vec: Vec<RomanDigit> = Vec::new();
-        let conversions = vec![
-            (1000, "M"),
-            (900, "CM"),
-            (500, "D"),
-            (400, "CD"),
-            (100, "C"),
-            (90, "XC"),
-            (50, "L"),
-            (40, "XL"),
-            (10, "X"),
-            (9, "IX"),
-            (5, "V"),
-            (4, "IV"),
-            (1, "I"),
-        ];
-        for (i, str) in conversions {
-            while number >= i {
-                for ch in str.chars() {
-                    let el = match ch {
-                        'M' => RomanDigit::M,
-                        'D' => RomanDigit::D,
-                        'C' => RomanDigit::C,
-                        'L' => RomanDigit::L,
-                        'X' => RomanDigit::X,
-                        'V' => RomanDigit::V,
-                        'I' => RomanDigit::I,
-                        _ => RomanDigit::Nulla,
-                    };
-                    vec.push(el);
+        if n == 0 {
+            return RomanNumber(vec![Nulla]);
+        }
+        let mut quotient = n;
+        let mut exponent = 0;
+        let mut reverse_roman = Vec::new();
+        while quotient != 0 {
+            let rest = quotient % 10;
+            quotient /= 10;
+            exponent += 1;
+            if rest == 9 {
+                reverse_roman.push(RomanDigit::from(10_u32.pow(exponent)));
+                reverse_roman.push(RomanDigit::from(10_u32.pow(exponent - 1)));
+            } else if rest == 4 {
+                reverse_roman.push(RomanDigit::from(10_u32.pow(exponent) / 2));
+                reverse_roman.push(RomanDigit::from(10_u32.pow(exponent - 1)));
+            } else if rest >= 5 {
+                let repetitions = rest - 5;
+                for _ in 0..repetitions {
+                    reverse_roman.push(RomanDigit::from(10_u32.pow(exponent - 1)));
                 }
-                number -= i;
+                reverse_roman.push(RomanDigit::from(10_u32.pow(exponent) / 2));
+            } else {
+                for _ in 0..rest {
+                    reverse_roman.push(RomanDigit::from(10_u32.pow(exponent - 1)))
+                }
             }
         }
-
-        RomanNumber { 0: vec }
+        reverse_roman.reverse();
+        reverse_roman.push(RomanDigit::Num(n));
+        RomanNumber(reverse_roman)
     }
 }
 
+
 impl Iterator for RomanNumber {
-    type Item = RomanNumber;
+    type Item = Self;
 
     fn next(&mut self) -> Option<Self::Item> {
-        let mut vec = self.clone();
-
-       
-        if self.0.len() == 1 && self.0[0] == RomanDigit::I {
-            return Some(RomanNumber(vec![]))
-        }
-        if let Some(&last_digit) = self.0.last() {
-            let el = match last_digit {
-                RomanDigit::M => RomanDigit::D,
-                RomanDigit::D => RomanDigit::C,
-                RomanDigit::C => RomanDigit::L,
-                RomanDigit::L => RomanDigit::X,
-                RomanDigit::X => RomanDigit::V,
-                RomanDigit::V => RomanDigit::I,
-                RomanDigit::I => return Some(self.clone()),
-                _ => return None,
-            };
-            vec.0.push(el);
-            Some(vec)
-        } else {
-            return Some(RomanNumber(vec![]))
-        }
+      
     }
-    
-    
 }
